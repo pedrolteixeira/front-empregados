@@ -1,0 +1,69 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-4">Novo Empregado</h2>
+    </div>
+
+    <form [formGroup]="empregadosForm" (ngSubmit)="salvarEmpregado()">
+        <div class="form-group">
+            <label for="firstName">Primeiro Nome *</label>
+            <input id="firstName" type="text" formControlName="firstName" class="form-control">
+            <div *ngIf="empregadosForm.get('firstName')?.invalid && (empregadosForm.get('firstName')?.dirty || empregadosForm.get('firstName')?.touched)" class="text-danger">
+                Primeiro Nome é obrigatório.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Último Nome *</label>
+            <input id="lastName" type="text" formControlName="lastName" class="form-control">
+            <div *ngIf="empregadosForm.get('lastName')?.invalid && (empregadosForm.get('lastName')?.dirty || empregadosForm.get('lastName')?.touched)" class="text-danger">
+                Último Nome é obrigatório.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input id="email" type="email" formControlName="email" class="form-control">
+            <div *ngIf="empregadosForm.get('email')?.invalid && (empregadosForm.get('email')?.dirty || empregadosForm.get('email')?.touched)" class="text-danger">
+                <div *ngIf="empregadosForm.get('email')?.errors?.['required']">Email é obrigatório.</div>
+                <div *ngIf="empregadosForm.get('email')?.errors?.['email']">Email inválido.</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="cpf">CPF *</label>
+            <input id="cpf" type="text" formControlName="cpf" class="form-control">
+            <div *ngIf="empregadosForm.get('cpf')?.invalid && (empregadosForm.get('cpf')?.dirty || empregadosForm.get('cpf')?.touched)" class="text-danger">
+                CPF é obrigatório.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="dateOfBirth">Data de Nascimento *</label>
+            <input id="dateOfBirth" type="date" formControlName="dateOfBirth" class="form-control">
+            <div *ngIf="empregadosForm.get('dateOfBirth')?.invalid && (empregadosForm.get('dateOfBirth')?.dirty || empregadosForm.get('dateOfBirth')?.touched)" class="text-danger">
+                Data de Nascimento é obrigatória.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="address">Endereço *</label>
+            <input id="address" type="text" formControlName="address" class="form-control">
+            <div *ngIf="empregadosForm.get('address')?.invalid && (empregadosForm.get('address')?.dirty || empregadosForm.get('address')?.touched)" class="text-danger">
+                Endereço é obrigatório.
+            </div>
+        </div>
+        
+
+
+        <div class="form-group">
+            <label for="currentlyEmployed">Empregado Atualmente</label>
+            <div class="form-check">
+                <input id="currentlyEmployed" type="checkbox" formControlName="currentlyEmployed"
+                    class="form-check-input">
+                <label class="form-check-label" for="currentlyEmployed">Sim</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>

@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-4">Lista de Empregados</h2>
+        <div>
+            <button class="btn btn-success mr-4" (click)="router.navigate(['form-empregados'])">Novo empregado</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="empregadoFiltro">Filtrar por nome:</label>
+        <select id="empregadoFiltro" class="form-control" [(ngModel)]="selectedEmpregadoId" (change)="filtrarEmpregados()">
+          <option value="">Todos</option>
+          <option *ngFor="let empregado of empregados" [value]="empregado.id">
+            {{ empregado.firstName }} {{ empregado.lastName }}
+          </option>
+        </select>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+            <th>Id</th>
+            <th>Primeiro Nome</th>
+            <th>Último Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th>Endereço</th>
+            <th>Empregado Atualmente</th>
+            <th></th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let empregado of empregadosFilter">
+                <td>{{ empregado.id }}</td>
+                <td>{{ empregado.firstName }}</td>
+                <td>{{ empregado.lastName }}</td>
+                <td>{{ empregado.email }}</td>
+                <td>{{ empregado.cpf }}</td>
+                <td>{{ empregado.dateOfBirth }}</td>
+                <td>{{ empregado.address }}</td>
+                <td>{{ empregado.currentlyEmployed ? 'Sim' : 'Não' }}</td>
+                <td class="text-right"><button class="btn btn-secondary" (click)="router.navigate(['/form-empregados', empregado.id])">Editar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
